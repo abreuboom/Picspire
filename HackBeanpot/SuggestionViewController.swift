@@ -42,7 +42,6 @@ class SuggestionViewController: CustomTransitionViewController, UITableViewDataS
         
         self.tableView.reloadData()
         
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -58,9 +57,7 @@ class SuggestionViewController: CustomTransitionViewController, UITableViewDataS
         
         print("bitch why u a pussy ass hoe: \(tags[indexPath.row])")
         
-        tableViewCell.tagLabel.text = tags[indexPath.row]
-        tableViewCell.photos = photosByTag[indexPath.row]
-        tableViewCell.configure()
+        tableViewCell.configure(relevantTag: tags[indexPath.row], photos: photosByTag[indexPath.row])
         
         return tableViewCell
         

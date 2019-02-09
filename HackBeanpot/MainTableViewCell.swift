@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate {
+class MainTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var tagLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -30,27 +30,42 @@ class MainTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollecti
         // Configure the view for the selected state
     }
     
-    public func configure () {
-        collectionView.dataSource = self
-        collectionView.delegate = self
+    public func configure (relevantTag: String, photos: [(String, String)]) {
+        self.relevantTag = relevantTag
+        self.photos = photos
+        self.tagLabel.text = relevantTag
+        self.collectionView.dataSource = self
+        self.collectionView.delegate = self
+        self.collectionView.alwaysBounceHorizontal = true
         
-        collectionView.reloadData()
+        self.collectionView.reloadData()
+        
+        self.layoutIfNeeded();
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 256, height: 256)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return CGFloat(integerLiteral: 32)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photos.count
+        return self.photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
         cell.contentView.layer.cornerRadius = 25.0
         cell.contentView.layer.masksToBounds = true;
+        cell.clipsToBounds = true;
         cell.contentView.layer.borderWidth = 1.0
         cell.contentView.layer.borderColor = UIColor.clear.cgColor
         
         cell.layer.shadowColor = UIColor.lightGray.cgColor
-        cell.layer.shadowOffset = CGSize(width:0,height: 1.0)
-        cell.layer.shadowRadius = 2.0
+        cell.layer.shadowOffset = CGSize(width:0, height: 1.0)
+        cell.layer.shadowRadius = 1.0
         cell.layer.shadowOpacity = 0.5
         cell.layer.masksToBounds = true;
         cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:cell.contentView.layer.cornerRadius).cgPath

@@ -27,7 +27,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
 
     @IBOutlet weak var previewView: UIView!
-    @IBOutlet weak var captureButton: UIButton!
     @IBOutlet weak var messageLabel: UILabel!
 
     @IBOutlet weak var imageView: UIView!
@@ -56,10 +55,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
         self.hero.isEnabled = true
         blackView.hero.id = "button"
-
-
-        captureButton.layer.cornerRadius = captureButton.frame.size.width / 2
-        captureButton.clipsToBounds = true
+        
+        blackView.layer.cornerRadius = 100.0
+        blackView.layer.masksToBounds = true;
+        blackView.clipsToBounds = true
+        blackView.layer.borderWidth = 1.0
+        blackView.layer.borderColor = UIColor.clear.cgColor
+        
+        blackView.layer.shadowColor = UIColor.lightGray.cgColor
+        blackView.layer.shadowOffset = CGSize(width:0,height: 1.0)
+        blackView.layer.shadowRadius = 2.0
+        blackView.layer.shadowOpacity = 0.5
+        blackView.layer.masksToBounds = true;
+        blackView.layer.shadowPath = UIBezierPath(roundedRect:blackView.bounds, cornerRadius:blackView.layer.cornerRadius).cgPath
+        
+        
 
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization();
@@ -292,6 +302,7 @@ extension ViewController {
                         let suggestionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SuggestionViewController") as! SuggestionViewController
                         suggestionViewController.photosByTag = [self.photosByTag]
                         suggestionViewController.tags = [self.relevantTag ?? ""]
+                        print("yeerrrr \(self.photosByTag.count)")
                         self.present(suggestionViewController, animated: true, completion: nil)
 
 //                            self.performSegue(withIdentifier: "toSuggestedView", sender: nil)
