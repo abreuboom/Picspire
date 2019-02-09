@@ -238,8 +238,8 @@ extension ViewController {
                 if numLabels > 0 {
                     self.messageLabel.text = "\(labelAnnotations["label"])"
                     self.relevantTag = "\(labelAnnotations["label"])"
-                    self.instagram.setQuery(query: "\(labelAnnotations["label"])")
-                    self.instagram.fetchData(completion: { (photoData) in
+                    self.instagram.setTagQuery(query: "\(labelAnnotations["label"])")
+                    self.instagram.fetchTagData(completion: { (photoData) in
                         for data in photoData {
                             self.photosByTag.append((data.url, data.caption))
                             print("woopity: \(data.url), \(data.caption)")
