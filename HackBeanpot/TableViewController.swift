@@ -9,7 +9,9 @@
 import Foundation
 import UIKit
 
-class TableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
+class SuggestionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    var photosByTag: [(String, String)]
 
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {

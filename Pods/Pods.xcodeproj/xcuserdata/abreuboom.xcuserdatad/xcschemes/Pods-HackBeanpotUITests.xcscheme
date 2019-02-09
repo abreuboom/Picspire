@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7C5B397611B82538C6D75F176FD32CC7"
-               BlueprintName = "FirebaseStorage"
+               BlueprintIdentifier = "BA81B71D8DD214BDD7184E5972CDF4B6"
+               BlueprintName = "Pods-HackBeanpotUITests"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "FirebaseStorage.framework">
+               BuildableName = "Pods-HackBeanpotUITests.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

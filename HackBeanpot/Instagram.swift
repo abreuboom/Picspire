@@ -29,17 +29,17 @@ class Instagram {
     
     func setQuery(query: String) -> () {
         let formattedQuery = query.replacingOccurrences(of: " ", with: "")
-        print(formattedQuery)
+//        print(formattedQuery)
         db.collection("Queries").document("queryField").setData(["Name": formattedQuery])
     }
     
-    func fetchData() -> ([photo]) {
-        db.collection("Results").document("resultField").addSnapshotListener { documentSnapshot, error in
+    func fetchData(completion:@escaping ([photo]) -> ()) {
+        db.collection("Results").document("tag").addSnapshotListener { documentSnapshot, error in
             guard let document = documentSnapshot else {
                 print("Error fetching document: \(error!)")
                 return
             }
-            guard let data = document.data() else {
+            guard document.data() != nil else {
                 print("Document data was empty.")
                 return
             }
@@ -57,9 +57,10 @@ class Instagram {
             }
             //print("Current data: \(data)")
             /* Use the data retrieved from firestore to create Photo structs and append them to the the photoArray which will be returned.
-            I think you must convert the data you get from Firestore to JSON before you can use it!
-            */
+             I think you must convert the data you get from Firestore to JSON before you can use it!
+             */
         }
-    return photoArray
+        print("\(photoArray)")
+        completion(photoArray)
     }
 }

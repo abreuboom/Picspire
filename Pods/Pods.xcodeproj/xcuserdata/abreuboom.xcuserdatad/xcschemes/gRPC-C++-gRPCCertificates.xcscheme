@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7C5B397611B82538C6D75F176FD32CC7"
-               BlueprintName = "FirebaseStorage"
+               BlueprintIdentifier = "92FCD33B4005D3EAA85347735CE2C454"
+               BlueprintName = "gRPC-C++-gRPCCertificates"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "FirebaseStorage.framework">
+               BuildableName = "gRPC-C++-gRPCCertificates.bundle">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
