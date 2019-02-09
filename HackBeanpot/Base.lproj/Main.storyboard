@@ -83,6 +83,9 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YpB-q6-54b">
                                 <rect key="frame" x="0.0" y="116" width="375" height="551"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainTableViewCell" rowHeight="254" id="LDX-zj-shU" customClass="MainTableViewCell" customModule="HackBeanpot" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="254"/>
@@ -146,6 +149,8 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="7aI-Vi-7oy" secondAttribute="trailing" constant="16" id="7S2-EG-X5j"/>
                                                 <constraint firstItem="7aI-Vi-7oy" firstAttribute="leading" secondItem="kCq-4q-uKH" secondAttribute="leading" constant="16" id="A9y-c7-IMr"/>
@@ -156,6 +161,7 @@
                                                 <constraint firstItem="7aI-Vi-7oy" firstAttribute="top" secondItem="Zlu-sD-uzl" secondAttribute="bottom" constant="8" id="vyE-Ru-65y"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="collectionView" destination="7aI-Vi-7oy" id="6SJ-lY-slg"/>
                                             <outlet property="tagLabel" destination="Zlu-sD-uzl" id="jdr-3t-Nk7"/>
@@ -169,14 +175,14 @@
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zQT-zn-8wt">
                                 <rect key="frame" x="155.5" y="36" width="64" height="64"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="64" id="IgT-64-7xh"/>
-                                    <constraint firstAttribute="height" constant="64" id="J4m-b4-b4i"/>
+                                    <constraint firstAttribute="width" secondItem="zQT-zn-8wt" secondAttribute="height" multiplier="1:1" id="lfV-jO-SLU"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="zQT-zn-8wt" firstAttribute="centerX" secondItem="2mZ-UK-DXE" secondAttribute="centerX" id="7G9-gV-h08"/>
                             <constraint firstItem="zQT-zn-8wt" firstAttribute="top" secondItem="pCc-ae-WoH" secondAttribute="top" constant="16" id="MsA-sJ-fOJ"/>

@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "508A88D0108FDD94110496D6AAB49D0B"
-               BlueprintName = "gRPC-C++"
+               BlueprintIdentifier = "0DE1F3E05127FC2398181EB9474C41EF"
+               BlueprintName = "Pastel"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "gRPC-C++.framework">
+               BuildableName = "Pastel.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
