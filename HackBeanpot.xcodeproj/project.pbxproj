@@ -152,12 +152,12 @@
 				453971CA220F0A220059DB0F /* PhotoCell.swift */,
 				453971CC220F0A220059DB0F /* MainTableViewCell.swift */,
 				453971D0220F0A780059DB0F /* SuggestionViewController.swift */,
+				5D5E8038220EFC770031B771 /* Instagram.swift */,
 				DA67241A220E774D006DC74A /* Main.storyboard */,
 				DA67241D220E774F006DC74A /* Assets.xcassets */,
 				DA67241F220E774F006DC74A /* LaunchScreen.storyboard */,
 				5DB970A0220EE2850026A6D9 /* GoogleService-Info.plist */,
 				DA672422220E774F006DC74A /* Info.plist */,
-				5D5E8038220EFC770031B771 /* Instagram.swift */,
 			);
 			path = HackBeanpot;
 			sourceTree = "<group>";

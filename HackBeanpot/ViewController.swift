@@ -292,23 +292,31 @@ extension ViewController {
                 if numLabels > 0 {
                     self.messageLabel.text = "\(labelAnnotations["label"])"
                     self.relevantTag = "\(labelAnnotations["label"])"
-                    self.instagram.setLocationQuery(longitude: self.longitude, latitude: self.latitude)
-                    self.instagram.setTagQuery(query: "\(labelAnnotations["label"])")
-                    self.instagram.fetchTagData(completion: { (tagData) in
-                        for data in tagData {
-                            self.photosByTag.append((data.url, data.caption))
-                            print("Tag URL: \(data.url), \(data.caption)")
-                            print("Tag Count \(self.photosByTag.count)")
+                    self.instagram.setLocationQuery(longitude: self.longitude, latitude: self.latitude, completion: {(success) in
+                        if success {
+                            print("something")
                         }
-
-                        let suggestionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SuggestionViewController") as! SuggestionViewController
-                        suggestionViewController.photosByTag = [self.photosByTag]
-                        suggestionViewController.tags = [self.relevantTag ?? ""]
-                        print("yeerrrr \(self.photosByTag.count)")
-                        self.present(suggestionViewController, animated: true, completion: nil)
-
-//                            self.performSegue(withIdentifier: "toSuggestedView", sender: nil)
-                        })
+                    })
+                    self.instagram.setTagQuery(query: "\(labelAnnotations["label"])", completion: {(success) in
+                        if success {
+                            self.instagram.fetchTagData(completion: { (tagData) in
+                                for data in tagData {
+                                    self.photosByTag.append((data.url, data.caption))
+                                    print("Tag URL: \(data.url), \(data.caption)")
+                                    print("Tag Count \(self.photosByTag.count)")
+                                }
+                                
+                                let suggestionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SuggestionViewController") as! SuggestionViewController
+                                suggestionViewController.photosByTag = [self.photosByTag]
+                                suggestionViewController.tags = [self.relevantTag ?? ""]
+                                print("yeerrrr \(self.photosByTag.count)")
+                                self.present(suggestionViewController, animated: true, completion: nil)
+                                
+                                //                            self.performSegue(withIdentifier: "toSuggestedView", sender: nil)
+                            })
+                        }
+                    })
+                    
 
 
                 } else {

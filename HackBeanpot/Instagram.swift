@@ -28,17 +28,21 @@ class Instagram {
         }
     }
     
-    func setTagQuery(query: String) -> () {
+    func setTagQuery(query: String, completion:@escaping (Bool) -> ()) -> () {
         let formattedQuery = query.replacingOccurrences(of: " ", with: "")
 //        print(formattedQuery)
-        db.collection("Queries").document("tagField").setData(["Tag": formattedQuery])
+        db.collection("Queries").document("tagField").setData(["Tag": formattedQuery]) { (error) in
+            completion(true)
+        }
     }
     
-    func setLocationQuery(longitude: Float, latitude: Float) -> () {
+    func setLocationQuery(longitude: Float, latitude: Float, completion:@escaping (Bool) -> ()) -> () {
         //        print(formattedQuery)
         
         
-        db.collection("Queries").document("locationField").setData(["longitude": longitude, "latitude": latitude])
+        db.collection("Queries").document("locationField").setData(["longitude": longitude, "latitude": latitude]) { (error) in
+            completion(true)
+        }
     }
     
     func fetchTagData(completion:@escaping ([photo]) -> ()) {
