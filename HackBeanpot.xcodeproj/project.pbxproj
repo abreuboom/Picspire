@@ -1,0 +1,710 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4062EF6028466CB90B4AC1AC /* Pods_HackBeanpot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB1D3537024216DA764B4A77 /* Pods_HackBeanpot.framework */; };
+		509A177C3030364D3EBF5F8A /* Pods_HackBeanpotTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B33EA0B0D83DFCE80BCFDF68 /* Pods_HackBeanpotTests.framework */; };
+		DA672417220E774D006DC74A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA672416220E774D006DC74A /* AppDelegate.swift */; };
+		DA672419220E774D006DC74A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA672418220E774D006DC74A /* ViewController.swift */; };
+		DA67241C220E774D006DC74A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA67241A220E774D006DC74A /* Main.storyboard */; };
+		DA67241E220E774F006DC74A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA67241D220E774F006DC74A /* Assets.xcassets */; };
+		DA672421220E774F006DC74A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA67241F220E774F006DC74A /* LaunchScreen.storyboard */; };
+		DA67242C220E7750006DC74A /* HackBeanpotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA67242B220E7750006DC74A /* HackBeanpotTests.swift */; };
+		DA672437220E7750006DC74A /* HackBeanpotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA672436220E7750006DC74A /* HackBeanpotUITests.swift */; };
+		DE77260FD0524F58E5D3CF12 /* Pods_HackBeanpotUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3281DE587E9928B26A7C49C8 /* Pods_HackBeanpotUITests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DA672428220E7750006DC74A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DA67240B220E774D006DC74A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DA672412220E774D006DC74A;
+			remoteInfo = HackBeanpot;
+		};
+		DA672433220E7750006DC74A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DA67240B220E774D006DC74A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DA672412220E774D006DC74A;
+			remoteInfo = HackBeanpot;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3281DE587E9928B26A7C49C8 /* Pods_HackBeanpotUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HackBeanpotUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D2E2CAC5EC1999AA381B449 /* Pods-HackBeanpot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackBeanpot.debug.xcconfig"; path = "Target Support Files/Pods-HackBeanpot/Pods-HackBeanpot.debug.xcconfig"; sourceTree = "<group>"; };
+		6056AD6688170696070BEEC3 /* Pods-HackBeanpotUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackBeanpotUITests.release.xcconfig"; path = "Target Support Files/Pods-HackBeanpotUITests/Pods-HackBeanpotUITests.release.xcconfig"; sourceTree = "<group>"; };
+		7B75340416C4891DAABF7091 /* Pods-HackBeanpot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackBeanpot.release.xcconfig"; path = "Target Support Files/Pods-HackBeanpot/Pods-HackBeanpot.release.xcconfig"; sourceTree = "<group>"; };
+		B33EA0B0D83DFCE80BCFDF68 /* Pods_HackBeanpotTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HackBeanpotTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1F039CC7BFC81C5EF8E345C /* Pods-HackBeanpotTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackBeanpotTests.release.xcconfig"; path = "Target Support Files/Pods-HackBeanpotTests/Pods-HackBeanpotTests.release.xcconfig"; sourceTree = "<group>"; };
+		DA672413220E774D006DC74A /* HackBeanpot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackBeanpot.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA672416220E774D006DC74A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DA672418220E774D006DC74A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DA67241B220E774D006DC74A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DA67241D220E774F006DC74A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DA672420220E774F006DC74A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DA672422220E774F006DC74A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DA672427220E7750006DC74A /* HackBeanpotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HackBeanpotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA67242B220E7750006DC74A /* HackBeanpotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackBeanpotTests.swift; sourceTree = "<group>"; };
+		DA67242D220E7750006DC74A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DA672432220E7750006DC74A /* HackBeanpotUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HackBeanpotUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA672436220E7750006DC74A /* HackBeanpotUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackBeanpotUITests.swift; sourceTree = "<group>"; };
+		DA672438220E7750006DC74A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB1D3537024216DA764B4A77 /* Pods_HackBeanpot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HackBeanpot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E325705D905BB206B76D1E6F /* Pods-HackBeanpotTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackBeanpotTests.debug.xcconfig"; path = "Target Support Files/Pods-HackBeanpotTests/Pods-HackBeanpotTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FDCC3F3C9F0685CD23F0764A /* Pods-HackBeanpotUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackBeanpotUITests.debug.xcconfig"; path = "Target Support Files/Pods-HackBeanpotUITests/Pods-HackBeanpotUITests.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DA672410220E774D006DC74A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4062EF6028466CB90B4AC1AC /* Pods_HackBeanpot.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA672424220E7750006DC74A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				509A177C3030364D3EBF5F8A /* Pods_HackBeanpotTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA67242F220E7750006DC74A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE77260FD0524F58E5D3CF12 /* Pods_HackBeanpotUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		01122F428830B29B5D57F6F6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DB1D3537024216DA764B4A77 /* Pods_HackBeanpot.framework */,
+				B33EA0B0D83DFCE80BCFDF68 /* Pods_HackBeanpotTests.framework */,
+				3281DE587E9928B26A7C49C8 /* Pods_HackBeanpotUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0A9E514F4F6523A90712C222 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5D2E2CAC5EC1999AA381B449 /* Pods-HackBeanpot.debug.xcconfig */,
+				7B75340416C4891DAABF7091 /* Pods-HackBeanpot.release.xcconfig */,
+				E325705D905BB206B76D1E6F /* Pods-HackBeanpotTests.debug.xcconfig */,
+				D1F039CC7BFC81C5EF8E345C /* Pods-HackBeanpotTests.release.xcconfig */,
+				FDCC3F3C9F0685CD23F0764A /* Pods-HackBeanpotUITests.debug.xcconfig */,
+				6056AD6688170696070BEEC3 /* Pods-HackBeanpotUITests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		DA67240A220E774D006DC74A = {
+			isa = PBXGroup;
+			children = (
+				DA672415220E774D006DC74A /* HackBeanpot */,
+				DA67242A220E7750006DC74A /* HackBeanpotTests */,
+				DA672435220E7750006DC74A /* HackBeanpotUITests */,
+				DA672414220E774D006DC74A /* Products */,
+				0A9E514F4F6523A90712C222 /* Pods */,
+				01122F428830B29B5D57F6F6 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		DA672414220E774D006DC74A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DA672413220E774D006DC74A /* HackBeanpot.app */,
+				DA672427220E7750006DC74A /* HackBeanpotTests.xctest */,
+				DA672432220E7750006DC74A /* HackBeanpotUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DA672415220E774D006DC74A /* HackBeanpot */ = {
+			isa = PBXGroup;
+			children = (
+				DA672416220E774D006DC74A /* AppDelegate.swift */,
+				DA672418220E774D006DC74A /* ViewController.swift */,
+				DA67241A220E774D006DC74A /* Main.storyboard */,
+				DA67241D220E774F006DC74A /* Assets.xcassets */,
+				DA67241F220E774F006DC74A /* LaunchScreen.storyboard */,
+				DA672422220E774F006DC74A /* Info.plist */,
+			);
+			path = HackBeanpot;
+			sourceTree = "<group>";
+		};
+		DA67242A220E7750006DC74A /* HackBeanpotTests */ = {
+			isa = PBXGroup;
+			children = (
+				DA67242B220E7750006DC74A /* HackBeanpotTests.swift */,
+				DA67242D220E7750006DC74A /* Info.plist */,
+			);
+			path = HackBeanpotTests;
+			sourceTree = "<group>";
+		};
+		DA672435220E7750006DC74A /* HackBeanpotUITests */ = {
+			isa = PBXGroup;
+			children = (
+				DA672436220E7750006DC74A /* HackBeanpotUITests.swift */,
+				DA672438220E7750006DC74A /* Info.plist */,
+			);
+			path = HackBeanpotUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DA672412220E774D006DC74A /* HackBeanpot */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DA67243B220E7750006DC74A /* Build configuration list for PBXNativeTarget "HackBeanpot" */;
+			buildPhases = (
+				193A9B3676236CFA4E8D4421 /* [CP] Check Pods Manifest.lock */,
+				DA67240F220E774D006DC74A /* Sources */,
+				DA672410220E774D006DC74A /* Frameworks */,
+				DA672411220E774D006DC74A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HackBeanpot;
+			productName = HackBeanpot;
+			productReference = DA672413220E774D006DC74A /* HackBeanpot.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DA672426220E7750006DC74A /* HackBeanpotTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DA67243E220E7750006DC74A /* Build configuration list for PBXNativeTarget "HackBeanpotTests" */;
+			buildPhases = (
+				17D369FA6A55B58E551A0ABA /* [CP] Check Pods Manifest.lock */,
+				DA672423220E7750006DC74A /* Sources */,
+				DA672424220E7750006DC74A /* Frameworks */,
+				DA672425220E7750006DC74A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DA672429220E7750006DC74A /* PBXTargetDependency */,
+			);
+			name = HackBeanpotTests;
+			productName = HackBeanpotTests;
+			productReference = DA672427220E7750006DC74A /* HackBeanpotTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DA672431220E7750006DC74A /* HackBeanpotUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DA672441220E7750006DC74A /* Build configuration list for PBXNativeTarget "HackBeanpotUITests" */;
+			buildPhases = (
+				A36CCDBC6DA1C614249CF1C5 /* [CP] Check Pods Manifest.lock */,
+				DA67242E220E7750006DC74A /* Sources */,
+				DA67242F220E7750006DC74A /* Frameworks */,
+				DA672430220E7750006DC74A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DA672434220E7750006DC74A /* PBXTargetDependency */,
+			);
+			name = HackBeanpotUITests;
+			productName = HackBeanpotUITests;
+			productReference = DA672432220E7750006DC74A /* HackBeanpotUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DA67240B220E774D006DC74A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "John Abreu";
+				TargetAttributes = {
+					DA672412220E774D006DC74A = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					DA672426220E7750006DC74A = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = DA672412220E774D006DC74A;
+					};
+					DA672431220E7750006DC74A = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = DA672412220E774D006DC74A;
+					};
+				};
+			};
+			buildConfigurationList = DA67240E220E774D006DC74A /* Build configuration list for PBXProject "HackBeanpot" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DA67240A220E774D006DC74A;
+			productRefGroup = DA672414220E774D006DC74A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DA672412220E774D006DC74A /* HackBeanpot */,
+				DA672426220E7750006DC74A /* HackBeanpotTests */,
+				DA672431220E7750006DC74A /* HackBeanpotUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DA672411220E774D006DC74A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA672421220E774F006DC74A /* LaunchScreen.storyboard in Resources */,
+				DA67241E220E774F006DC74A /* Assets.xcassets in Resources */,
+				DA67241C220E774D006DC74A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA672425220E7750006DC74A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA672430220E7750006DC74A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		17D369FA6A55B58E551A0ABA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HackBeanpotTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		193A9B3676236CFA4E8D4421 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HackBeanpot-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A36CCDBC6DA1C614249CF1C5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HackBeanpotUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DA67240F220E774D006DC74A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA672419220E774D006DC74A /* ViewController.swift in Sources */,
+				DA672417220E774D006DC74A /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA672423220E7750006DC74A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA67242C220E7750006DC74A /* HackBeanpotTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA67242E220E7750006DC74A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA672437220E7750006DC74A /* HackBeanpotUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DA672429220E7750006DC74A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DA672412220E774D006DC74A /* HackBeanpot */;
+			targetProxy = DA672428220E7750006DC74A /* PBXContainerItemProxy */;
+		};
+		DA672434220E7750006DC74A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DA672412220E774D006DC74A /* HackBeanpot */;
+			targetProxy = DA672433220E7750006DC74A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DA67241A220E774D006DC74A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DA67241B220E774D006DC74A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		DA67241F220E774F006DC74A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DA672420220E774F006DC74A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DA672439220E7750006DC74A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DA67243A220E7750006DC74A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DA67243C220E7750006DC74A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5D2E2CAC5EC1999AA381B449 /* Pods-HackBeanpot.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3CJT76PC4B;
+				INFOPLIST_FILE = HackBeanpot/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.abreuboom.HackBeanpot;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DA67243D220E7750006DC74A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7B75340416C4891DAABF7091 /* Pods-HackBeanpot.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3CJT76PC4B;
+				INFOPLIST_FILE = HackBeanpot/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.abreuboom.HackBeanpot;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		DA67243F220E7750006DC74A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E325705D905BB206B76D1E6F /* Pods-HackBeanpotTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3CJT76PC4B;
+				INFOPLIST_FILE = HackBeanpotTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.abreuboom.HackBeanpotTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HackBeanpot.app/HackBeanpot";
+			};
+			name = Debug;
+		};
+		DA672440220E7750006DC74A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1F039CC7BFC81C5EF8E345C /* Pods-HackBeanpotTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3CJT76PC4B;
+				INFOPLIST_FILE = HackBeanpotTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.abreuboom.HackBeanpotTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HackBeanpot.app/HackBeanpot";
+			};
+			name = Release;
+		};
+		DA672442220E7750006DC74A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FDCC3F3C9F0685CD23F0764A /* Pods-HackBeanpotUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3CJT76PC4B;
+				INFOPLIST_FILE = HackBeanpotUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.abreuboom.HackBeanpotUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HackBeanpot;
+			};
+			name = Debug;
+		};
+		DA672443220E7750006DC74A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6056AD6688170696070BEEC3 /* Pods-HackBeanpotUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3CJT76PC4B;
+				INFOPLIST_FILE = HackBeanpotUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.abreuboom.HackBeanpotUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HackBeanpot;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DA67240E220E774D006DC74A /* Build configuration list for PBXProject "HackBeanpot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA672439220E7750006DC74A /* Debug */,
+				DA67243A220E7750006DC74A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DA67243B220E7750006DC74A /* Build configuration list for PBXNativeTarget "HackBeanpot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA67243C220E7750006DC74A /* Debug */,
+				DA67243D220E7750006DC74A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DA67243E220E7750006DC74A /* Build configuration list for PBXNativeTarget "HackBeanpotTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA67243F220E7750006DC74A /* Debug */,
+				DA672440220E7750006DC74A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DA672441220E7750006DC74A /* Build configuration list for PBXNativeTarget "HackBeanpotUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA672442220E7750006DC74A /* Debug */,
+				DA672443220E7750006DC74A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DA67240B220E774D006DC74A /* Project object */;
+}
