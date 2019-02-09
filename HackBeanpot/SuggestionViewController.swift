@@ -15,6 +15,7 @@ class SuggestionViewController: CustomTransitionViewController, UITableViewDataS
     var tags: [String] = []
     
     var photosByTag: [[(String, String)]] = []
+    var photosByLocation: [[(String, String)]] = []
 
     @IBOutlet weak var tableView: UITableView!
     
