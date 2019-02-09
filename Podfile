@@ -12,6 +12,7 @@ target 'HackBeanpot' do
   pod 'Firebase/Core'
   pod 'Firebase/Firestore'
   pod 'SwiftyJSON', '~> 3.1'
+  pod 'TransitionButton'
 
   target 'HackBeanpotTests' do
     inherit! :search_paths

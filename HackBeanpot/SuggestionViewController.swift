@@ -8,8 +8,9 @@
 
 import Foundation
 import UIKit
+import TransitionButton
 
-class SuggestionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SuggestionViewController: CustomTransitionViewController, UITableViewDataSource, UITableViewDelegate {
     
     var tags: [String] = []
     
@@ -20,11 +21,13 @@ class SuggestionViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         
-        tableView.reloadData()
-        print("\(tags[0])")
+        self.tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {

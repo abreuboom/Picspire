@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import SwiftyJSON
+import TransitionButton
 
 class ViewController: UIViewController {
     let imagePicker = UIImagePickerController()
@@ -16,7 +17,7 @@ class ViewController: UIViewController {
     let instagram = Instagram()
     
     @IBOutlet weak var previewView: UIView!
-    @IBOutlet weak var captureButton: UIButton!
+    @IBOutlet weak var captureButton: TransitionButton!
     @IBOutlet weak var messageLabel: UILabel!
     
     @IBOutlet weak var imageView: UIView!
@@ -113,7 +114,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onTapTakePhoto(_ sender: Any) {
+    @IBAction func onTapTakePhoto(_ button: TransitionButton) {
         // Make sure capturePhotoOutput is valid
         guard let capturePhotoOutput = self.capturePhotoOutput else { return }
         
@@ -127,11 +128,14 @@ class ViewController: UIViewController {
         
         // Call capturePhoto method by passing our photo settings and a delegate implementing AVCapturePhotoCaptureDelegate
         capturePhotoOutput.capturePhoto(with: photoSettings, delegate: self)
+        
+        
+        
+        
     }
 }
 
 extension ViewController : AVCapturePhotoCaptureDelegate {
-    
     
     
     func photoOutput(_ captureOutput: AVCapturePhotoOutput,
@@ -140,27 +144,48 @@ extension ViewController : AVCapturePhotoCaptureDelegate {
                      resolvedSettings: AVCaptureResolvedPhotoSettings,
                      bracketSettings: AVCaptureBracketedStillImageSettings?,
                      error: Error?) {
-        // Make sure we get some photo sample buffer
-        guard error == nil,
-            let photoSampleBuffer = photoSampleBuffer else {
-                print("Error capturing photo: \(String(describing: error))")
-                return
-        }
+        captureButton.startAnimation()
+        let qualityOfServiceClass = DispatchQoS.QoSClass.background
+        let backgroundQueue = DispatchQueue.global(qos: qualityOfServiceClass)
+        backgroundQueue.async(execute: {
+            
+            //            sleep(3) // 3: Do your networking task or background work here.
+            
+            DispatchQueue.main.async(execute: { () -> Void in
+                
+                // Make sure we get some photo sample buffer
+                guard error == nil,
+                    let photoSampleBuffer = photoSampleBuffer else {
+                        print("Error capturing photo: \(String(describing: error))")
+                        self.captureButton.stopAnimation(animationStyle: .shake, completion: {})
+                        return
+                }
+                
+                // Convert photo same buffer to a jpeg image data by using AVCapturePhotoOutput
+                guard let imageData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: photoSampleBuffer, previewPhotoSampleBuffer: previewPhotoSampleBuffer) else {
+                    return
+                }
+                
+                // Initialise an UIImage with our image data
+                let capturedImage = UIImage.init(data: imageData , scale: 1.0)
+                if let image = capturedImage {
+                    // Save our captured image to photos album
+                    UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+                    self.messageLabel.text = "CAPTURED"
+                    let binaryImageData = self.base64EncodeImage(image)
+                    self.createRequest(with: binaryImageData)
+                }
+                
+                
+                
+                // 4: Stop the animation, here you have three options for the `animationStyle` property:
+                // .expand: useful when the task has been compeletd successfully and you want to expand the button and transit to another view controller in the completion callback
+                // .shake: when you want to reflect to the user that the task did not complete successfly
+                // .normal
+                
+            })
+        })
         
-        // Convert photo same buffer to a jpeg image data by using AVCapturePhotoOutput
-        guard let imageData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: photoSampleBuffer, previewPhotoSampleBuffer: previewPhotoSampleBuffer) else {
-            return
-        }
-        
-        // Initialise an UIImage with our image data
-        let capturedImage = UIImage.init(data: imageData , scale: 1.0)
-        if let image = capturedImage {
-            // Save our captured image to photos album
-            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-            self.messageLabel.text = "CAPTURED"
-            let binaryImageData = base64EncodeImage(image)
-            createRequest(with: binaryImageData)
-        }
     }
 }
 
@@ -242,16 +267,22 @@ extension ViewController {
                     self.instagram.fetchTagData(completion: { (photoData) in
                         for data in photoData {
                             self.photosByTag.append((data.url, data.caption))
-                            print("woopity: \(data.url), \(data.caption)")
-                            print("ROARRRR \(self.photosByTag.count)")
                         }
                         
-                        self.performSegue(withIdentifier: "toSuggestionView", sender: nil)
+                        //self.performSegue(withIdentifier: "toSuggestionView", sender: nil)
+                        self.captureButton.stopAnimation(animationStyle: .expand, completion: {
+//                            let suggestionViewController = SuggestionViewController()
+//                            suggestionViewController.photosByTag = [self.photosByTag]
+//                            suggestionViewController.tags = [self.relevantTag ?? ""]
+                            
+                            self.performSegue(withIdentifier: "toSuggestedView", sender: nil)
+                        })
                     })
                     
                     
                 } else {
                     self.messageLabel.text = "No labels found"
+                    self.captureButton.stopAnimation(animationStyle: .shake, completion: {})
                 }
             }
         })
@@ -336,10 +367,9 @@ extension ViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toSuggestionView" {
+        if segue.identifier == "toSuggestedView" {
             let suggestionViewController = segue.destination as! SuggestionViewController
             suggestionViewController.photosByTag = [self.photosByTag]
-//            print("my son wya: \(self.photosByTag[0].0)")
             suggestionViewController.tags = [self.relevantTag ?? ""]
         }
     }
