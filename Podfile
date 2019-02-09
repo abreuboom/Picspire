@@ -7,6 +7,9 @@ target 'HackBeanpot' do
 
   # Pods for HackBeanpot
 
+  pod 'Firebase/Database'
+  pod 'Firebase/Storage'
+
   target 'HackBeanpotTests' do
     inherit! :search_paths
     # Pods for testing
