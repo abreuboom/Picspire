@@ -26,6 +26,8 @@ class ViewController: UIViewController {
     var capturePhotoOutput: AVCapturePhotoOutput?
     var qrCodeFrameView: UIView?
     
+    var photosByTag: [(String, String)] = []
+    var relevantTag: String?
     
     
     var googleAPIKey = "AIzaSyCR-th9Bylxi4PCgf3m6q8LcvPMPZtNaBU"
@@ -235,8 +237,19 @@ extension ViewController {
                 //var labels: Array<String> = []
                 if numLabels > 0 {
                     self.messageLabel.text = "\(labelAnnotations["label"])"
+                    self.relevantTag = "\(labelAnnotations["label"])"
                     self.instagram.setQuery(query: "\(labelAnnotations["label"])")
-                    self.instagram.fetchData()
+                    self.instagram.fetchData(completion: { (photoData) in
+                        for data in photoData {
+                            self.photosByTag.append((data.url, data.caption))
+                            print("woopity: \(data.url), \(data.caption)")
+                            print("ROARRRR \(self.photosByTag.count)")
+                        }
+                        
+                        self.performSegue(withIdentifier: "toSuggestionView", sender: nil)
+                    })
+                    
+                    
                 } else {
                     self.messageLabel.text = "No labels found"
                 }
@@ -245,25 +258,6 @@ extension ViewController {
         
     }
     
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-//        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-//            imageView.contentMode = .scaleAspectFit
-//            imageView.isHidden = true // You could optionally display the image here by setting imageView.image = pickedImage
-//
-//            messageLabel.isHidden = true
-//
-//            // Base64 encode the image and create the request
-//            let binaryImageData = base64EncodeImage(pickedImage)
-//            createRequest(with: binaryImageData)
-//        }
-//
-//        dismiss(animated: true, completion: nil)
-//    }
-//
-//    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-//        dismiss(animated: true, completion: nil)
-//    }
-//
     func resizeImage(_ imageSize: CGSize, image: UIImage) -> Data {
         UIGraphicsBeginImageContext(imageSize)
         image.draw(in: CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height))
@@ -339,5 +333,14 @@ extension ViewController {
         }
         
         task.resume()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toSuggestionView" {
+            let suggestionViewController = segue.destination as! SuggestionViewController
+            suggestionViewController.photosByTag = [self.photosByTag]
+//            print("my son wya: \(self.photosByTag[0].0)")
+            suggestionViewController.tags = [self.relevantTag ?? ""]
+        }
     }
 }

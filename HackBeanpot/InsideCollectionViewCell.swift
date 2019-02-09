@@ -1,5 +1,5 @@
 //
-//  InsideCollectionViewCell.swift
+//  PhotoCell.swift
 //  HackBeanpot
 //
 //  Created by J. Lozano on 2/9/19.
@@ -8,6 +8,14 @@
 
 import UIKit
 
-class InsideCollectionViewCell: UICollectionViewCell {
+class PhotoCell: UICollectionViewCell {
+
+   
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+        
+    }
+    
     
 }

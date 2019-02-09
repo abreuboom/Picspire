@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7C5B397611B82538C6D75F176FD32CC7"
-               BlueprintName = "FirebaseStorage"
+               BlueprintIdentifier = "FD2E694E9CEA688EDE3ECF9A53131790"
+               BlueprintName = "nanopb"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "FirebaseStorage.framework">
+               BuildableName = "nanopb.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
