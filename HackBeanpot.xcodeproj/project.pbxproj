@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4062EF6028466CB90B4AC1AC /* Pods_HackBeanpot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB1D3537024216DA764B4A77 /* Pods_HackBeanpot.framework */; };
 		509A177C3030364D3EBF5F8A /* Pods_HackBeanpotTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B33EA0B0D83DFCE80BCFDF68 /* Pods_HackBeanpotTests.framework */; };
+		5DB970A1220EE2850026A6D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5DB970A0220EE2850026A6D9 /* GoogleService-Info.plist */; };
 		DA672417220E774D006DC74A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA672416220E774D006DC74A /* AppDelegate.swift */; };
 		DA672419220E774D006DC74A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA672418220E774D006DC74A /* ViewController.swift */; };
 		DA67241C220E774D006DC74A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA67241A220E774D006DC74A /* Main.storyboard */; };
@@ -39,6 +40,7 @@
 /* Begin PBXFileReference section */
 		3281DE587E9928B26A7C49C8 /* Pods_HackBeanpotUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HackBeanpotUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D2E2CAC5EC1999AA381B449 /* Pods-HackBeanpot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackBeanpot.debug.xcconfig"; path = "Target Support Files/Pods-HackBeanpot/Pods-HackBeanpot.debug.xcconfig"; sourceTree = "<group>"; };
+		5DB970A0220EE2850026A6D9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6056AD6688170696070BEEC3 /* Pods-HackBeanpotUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackBeanpotUITests.release.xcconfig"; path = "Target Support Files/Pods-HackBeanpotUITests/Pods-HackBeanpotUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7B75340416C4891DAABF7091 /* Pods-HackBeanpot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackBeanpot.release.xcconfig"; path = "Target Support Files/Pods-HackBeanpot/Pods-HackBeanpot.release.xcconfig"; sourceTree = "<group>"; };
 		B33EA0B0D83DFCE80BCFDF68 /* Pods_HackBeanpotTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HackBeanpotTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,6 +144,7 @@
 				DA67241A220E774D006DC74A /* Main.storyboard */,
 				DA67241D220E774F006DC74A /* Assets.xcassets */,
 				DA67241F220E774F006DC74A /* LaunchScreen.storyboard */,
+				5DB970A0220EE2850026A6D9 /* GoogleService-Info.plist */,
 				DA672422220E774F006DC74A /* Info.plist */,
 			);
 			path = HackBeanpot;
@@ -274,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA672421220E774F006DC74A /* LaunchScreen.storyboard in Resources */,
+				5DB970A1220EE2850026A6D9 /* GoogleService-Info.plist in Resources */,
 				DA67241E220E774F006DC74A /* Assets.xcassets in Resources */,
 				DA67241C220E774D006DC74A /* Main.storyboard in Resources */,
 			);
