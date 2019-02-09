@@ -34,9 +34,11 @@ class Instagram {
         db.collection("Queries").document("tagField").setData(["Tag": formattedQuery])
     }
     
-    func setLocationQuery(query: String) -> () {
+    func setLocationQuery(longitude: Float, latitude: Float) -> () {
         //        print(formattedQuery)
-        db.collection("Queries").document("locationField").setData(["Location": query])
+        
+        
+        db.collection("Queries").document("locationField").setData(["longitude": longitude, "latitude": latitude])
     }
     
     func fetchTagData(completion:@escaping ([photo]) -> ()) {

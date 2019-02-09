@@ -9,8 +9,14 @@
 import UIKit
 import AVFoundation
 import SwiftyJSON
+import CoreLocation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CLLocationManagerDelegate {
+    let locationManager = CLLocationManager()
+    
+    var longitude: Float = 21.25
+    var latitude: Float = 21.5
+    
     let imagePicker = UIImagePickerController()
     let session = URLSession.shared
     let instagram = Instagram()
@@ -27,6 +33,7 @@ class ViewController: UIViewController {
     var qrCodeFrameView: UIView?
     
     var photosByTag: [(String, String)] = []
+    var photosByLocation: [(String, String)] = []
     var relevantTag: String?
     
     
@@ -42,7 +49,14 @@ class ViewController: UIViewController {
         captureButton.layer.cornerRadius = captureButton.frame.size.width / 2
         captureButton.clipsToBounds = true
         
+        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization();
         
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.startUpdatingLocation()
+        }
         // Get an instance of the AVCaptureDevice class to initialize a device object and provide the video as the media type parameter
         guard let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {
             fatalError("No video device found")
@@ -99,6 +113,15 @@ class ViewController: UIViewController {
             return
         }
         
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            
+            longitude = Float(location.coordinate.longitude)
+            latitude = Float(location.coordinate.latitude)
+            
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -238,12 +261,22 @@ extension ViewController {
                 if numLabels > 0 {
                     self.messageLabel.text = "\(labelAnnotations["label"])"
                     self.relevantTag = "\(labelAnnotations["label"])"
+                    self.instagram.setLocationQuery(longitude: self.longitude, latitude: self.latitude)
                     self.instagram.setTagQuery(query: "\(labelAnnotations["label"])")
-                    self.instagram.fetchTagData(completion: { (photoData) in
-                        for data in photoData {
+                    self.instagram.fetchTagData(completion: { (tagData) in
+                        for data in tagData {
                             self.photosByTag.append((data.url, data.caption))
                             print("woopity: \(data.url), \(data.caption)")
                             print("ROARRRR \(self.photosByTag.count)")
+                        }
+                        
+                        self.performSegue(withIdentifier: "toSuggestionView", sender: nil)
+                    })
+                    self.instagram.fetchLocationData(completion: { (locationData) in
+                        for data in locationData {
+                            self.photosByLocation.append((data.url, data.caption))
+                            print("woopity: \(data.url), \(data.caption)")
+                            print("ROARRRR \(self.photosByLocation.count)")
                         }
                         
                         self.performSegue(withIdentifier: "toSuggestionView", sender: nil)
@@ -339,6 +372,8 @@ extension ViewController {
         if segue.identifier == "toSuggestionView" {
             let suggestionViewController = segue.destination as! SuggestionViewController
             suggestionViewController.photosByTag = [self.photosByTag]
+            suggestionViewController.photosByLocation = [self.photosByLocation]
+            
 //            print("my son wya: \(self.photosByTag[0].0)")
             suggestionViewController.tags = [self.relevantTag ?? ""]
         }
