@@ -87,7 +87,8 @@ class Instagram {
             let captionArray = document.data()?["LCaptions"] as? [String]
             
             var counter = 0;
-            while (counter < 10) {
+            while (counter < 8) {
+                
                 let url = urlArray?[counter]
                 let caption = captionArray?[counter]
                 counter = counter + 1
