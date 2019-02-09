@@ -109,7 +109,6 @@
 				FDCC3F3C9F0685CD23F0764A /* Pods-HackBeanpotUITests.debug.xcconfig */,
 				6056AD6688170696070BEEC3 /* Pods-HackBeanpotUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -547,13 +546,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3CJT76PC4B;
+				DEVELOPMENT_TEAM = SJLKQ9N4NC;
 				INFOPLIST_FILE = HackBeanpot/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.abreuboom.HackBeanpot;
+				PRODUCT_BUNDLE_IDENTIFIER = com.subraiz.HackBeanpot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -566,13 +565,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3CJT76PC4B;
+				DEVELOPMENT_TEAM = SJLKQ9N4NC;
 				INFOPLIST_FILE = HackBeanpot/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.abreuboom.HackBeanpot;
+				PRODUCT_BUNDLE_IDENTIFIER = com.subraiz.HackBeanpot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
