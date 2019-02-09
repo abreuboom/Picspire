@@ -8,17 +8,30 @@
 
 import UIKit
 import AVFoundation
+import SwiftyJSON
 
 class ViewController: UIViewController {
+    let imagePicker = UIImagePickerController()
+    let session = URLSession.shared
     
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var captureButton: UIButton!
     @IBOutlet weak var messageLabel: UILabel!
     
+    @IBOutlet weak var imageView: UIView!
+    
     var captureSession: AVCaptureSession?
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     var capturePhotoOutput: AVCapturePhotoOutput?
     var qrCodeFrameView: UIView?
+    
+    
+    
+    var googleAPIKey = "AIzaSyCR-th9Bylxi4PCgf3m6q8LcvPMPZtNaBU"
+    var googleURL: URL {
+        return URL(string: "https://vision.googleapis.com/v1/images:annotate?key=\(googleAPIKey)")!
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,6 +127,9 @@ class ViewController: UIViewController {
 }
 
 extension ViewController : AVCapturePhotoCaptureDelegate {
+    
+    
+    
     func photoOutput(_ captureOutput: AVCapturePhotoOutput,
                      didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?,
                      previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?,
@@ -137,6 +153,9 @@ extension ViewController : AVCapturePhotoCaptureDelegate {
         if let image = capturedImage {
             // Save our captured image to photos album
             UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+            self.messageLabel.text = "CAPTURED"
+            let binaryImageData = base64EncodeImage(image)
+            createRequest(with: binaryImageData)
         }
     }
 }
@@ -177,5 +196,144 @@ extension UIInterfaceOrientation {
         case .portrait: return .portrait
         default: return nil
         }
+    }
+}
+
+
+
+/// Image processing
+
+extension ViewController {
+    
+    func analyzeResults(_ dataToParse: Data) {
+        
+        // Update UI on the main thread
+        DispatchQueue.main.async(execute: {
+            
+            
+            // Use SwiftyJSON to parse results
+            let json = JSON(data: dataToParse)
+            let errorObj: JSON = json["error"]
+            
+            self.messageLabel.isHidden = false
+            
+            // Check for errors
+            if (errorObj.dictionaryValue != [:]) {
+                self.messageLabel.text = "Error code \(errorObj["code"]): \(errorObj["message"])"
+            } else {
+                // Parse the response
+                print(json)
+                let responses: JSON = json["responses"][0]
+                let results: JSON = responses["webDetection"]
+                
+                // Get label annotations
+                let labelAnnotations: JSON = results["bestGuessLabels"][0]
+                print("my bitch be like \(labelAnnotations["label"])")
+                let numLabels: Int = labelAnnotations.count
+                var labels: Array<String> = []
+                if numLabels > 0 {
+                    self.messageLabel.text = "\(labelAnnotations["label"])"
+                } else {
+                    self.messageLabel.text = "No labels found"
+                }
+            }
+        })
+        
+    }
+    
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+//        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+//            imageView.contentMode = .scaleAspectFit
+//            imageView.isHidden = true // You could optionally display the image here by setting imageView.image = pickedImage
+//
+//            messageLabel.isHidden = true
+//
+//            // Base64 encode the image and create the request
+//            let binaryImageData = base64EncodeImage(pickedImage)
+//            createRequest(with: binaryImageData)
+//        }
+//
+//        dismiss(animated: true, completion: nil)
+//    }
+//
+//    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+//        dismiss(animated: true, completion: nil)
+//    }
+//
+    func resizeImage(_ imageSize: CGSize, image: UIImage) -> Data {
+        UIGraphicsBeginImageContext(imageSize)
+        image.draw(in: CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        let resizedImage = newImage!.pngData()
+        UIGraphicsEndImageContext()
+        return resizedImage!
+    }
+}
+
+
+/// Networking
+
+extension ViewController {
+    func base64EncodeImage(_ image: UIImage) -> String {
+        var imagedata = image.pngData()
+        
+        // Resize the image if it exceeds the 2MB API limit
+        if ((imagedata?.count)! > 2097152) {
+            let oldSize: CGSize = image.size
+            let newSize: CGSize = CGSize(width: 800, height: oldSize.height / oldSize.width * 800)
+            imagedata = resizeImage(newSize, image: image)
+        }
+        
+        return imagedata!.base64EncodedString(options: .endLineWithCarriageReturn)
+    }
+    
+    func createRequest(with imageBase64: String) {
+        // Create our request URL
+        
+        var request = URLRequest(url: googleURL)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue(Bundle.main.bundleIdentifier ?? "", forHTTPHeaderField: "X-Ios-Bundle-Identifier")
+        
+        // Build our API request
+        let jsonRequest = [
+            "requests": [
+                "image": [
+                    "content": imageBase64
+                ],
+                "features": [
+                    [
+                        "type": "WEB_DETECTION",
+                        "maxResults": 10
+                    ]
+                ]
+            ]
+        ]
+        let jsonObject = JSON(jsonRequest)
+        
+        // Serialize the JSON
+        guard let data = try? jsonObject.rawData() else {
+            return
+        }
+        
+        request.httpBody = data
+        
+        // Run the request on a background thread
+        DispatchQueue.global().async { self.runRequestOnBackgroundThread(request) }
+    }
+    
+    func runRequestOnBackgroundThread(_ request: URLRequest) {
+        // run the request
+        
+        let task: URLSessionDataTask = session.dataTask(with: request) { (data, response, error) in
+            guard let data = data, error == nil else {
+                print(error?.localizedDescription ?? "")
+                return
+            }
+            
+            self.analyzeResults(data)
+        }
+        
+        task.resume()
     }
 }

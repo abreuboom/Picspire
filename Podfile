@@ -9,6 +9,7 @@ target 'HackBeanpot' do
 
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
+  pod 'SwiftyJSON', '~> 3.1'
 
   target 'HackBeanpotTests' do
     inherit! :search_paths
