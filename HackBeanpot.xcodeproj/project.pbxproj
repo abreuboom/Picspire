@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4062EF6028466CB90B4AC1AC /* Pods_HackBeanpot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB1D3537024216DA764B4A77 /* Pods_HackBeanpot.framework */; };
 		509A177C3030364D3EBF5F8A /* Pods_HackBeanpotTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B33EA0B0D83DFCE80BCFDF68 /* Pods_HackBeanpotTests.framework */; };
+		5D5E8039220EFC770031B771 /* Instagram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5E8038220EFC770031B771 /* Instagram.swift */; };
 		5DB970A1220EE2850026A6D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5DB970A0220EE2850026A6D9 /* GoogleService-Info.plist */; };
 		DA672417220E774D006DC74A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA672416220E774D006DC74A /* AppDelegate.swift */; };
 		DA672419220E774D006DC74A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA672418220E774D006DC74A /* ViewController.swift */; };
@@ -40,6 +41,7 @@
 /* Begin PBXFileReference section */
 		3281DE587E9928B26A7C49C8 /* Pods_HackBeanpotUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HackBeanpotUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D2E2CAC5EC1999AA381B449 /* Pods-HackBeanpot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackBeanpot.debug.xcconfig"; path = "Target Support Files/Pods-HackBeanpot/Pods-HackBeanpot.debug.xcconfig"; sourceTree = "<group>"; };
+		5D5E8038220EFC770031B771 /* Instagram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instagram.swift; sourceTree = "<group>"; };
 		5DB970A0220EE2850026A6D9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6056AD6688170696070BEEC3 /* Pods-HackBeanpotUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackBeanpotUITests.release.xcconfig"; path = "Target Support Files/Pods-HackBeanpotUITests/Pods-HackBeanpotUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7B75340416C4891DAABF7091 /* Pods-HackBeanpot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackBeanpot.release.xcconfig"; path = "Target Support Files/Pods-HackBeanpot/Pods-HackBeanpot.release.xcconfig"; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				DA67241F220E774F006DC74A /* LaunchScreen.storyboard */,
 				5DB970A0220EE2850026A6D9 /* GoogleService-Info.plist */,
 				DA672422220E774F006DC74A /* Info.plist */,
+				5D5E8038220EFC770031B771 /* Instagram.swift */,
 			);
 			path = HackBeanpot;
 			sourceTree = "<group>";
@@ -375,19 +378,29 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-HackBeanpot/Pods-HackBeanpot-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -402,6 +415,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA672419220E774D006DC74A /* ViewController.swift in Sources */,
+				5D5E8039220EFC770031B771 /* Instagram.swift in Sources */,
 				DA672417220E774D006DC74A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

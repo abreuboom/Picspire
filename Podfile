@@ -9,6 +9,8 @@ target 'HackBeanpot' do
 
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
+  pod 'Firebase/Core'
+  pod 'Firebase/Firestore'
   pod 'SwiftyJSON', '~> 3.1'
 
   target 'HackBeanpotTests' do
