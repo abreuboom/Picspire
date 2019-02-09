@@ -9,5 +9,8 @@
 import UIKit
 
 class InsideCollectionViewCell: UICollectionViewCell {
+
+   
+    
     
 }
