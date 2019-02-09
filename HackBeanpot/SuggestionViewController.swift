@@ -18,9 +18,21 @@ class SuggestionViewController: CustomTransitionViewController, UITableViewDataS
 
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var blackView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.hero.isEnabled = true
+        blackView.hero.id = "button"
+        tableView.hero.id = "tableView"
+        
+        tableView.hero.modifiers = [.translate(y: 700), .useGlobalCoordinateSpace]
+        blackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap)))
+    }
+    
+    @objc func onTap() {
+        dismiss(animated: true, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -28,6 +40,8 @@ class SuggestionViewController: CustomTransitionViewController, UITableViewDataS
         self.tableView.dataSource = self
         
         self.tableView.reloadData()
+        
+        
     }
     
     override func didReceiveMemoryWarning() {

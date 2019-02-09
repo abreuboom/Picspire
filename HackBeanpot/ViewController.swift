@@ -9,15 +9,19 @@
 import UIKit
 import AVFoundation
 import SwiftyJSON
-import TransitionButton
+import Hero
 
 class ViewController: UIViewController {
     let imagePicker = UIImagePickerController()
     let session = URLSession.shared
     let instagram = Instagram()
     
+    @IBOutlet weak var blackView: UIView!
+    
+    
+    
     @IBOutlet weak var previewView: UIView!
-    @IBOutlet weak var captureButton: TransitionButton!
+    @IBOutlet weak var captureButton: UIButton!
     @IBOutlet weak var messageLabel: UILabel!
     
     @IBOutlet weak var imageView: UIView!
@@ -37,8 +41,15 @@ class ViewController: UIViewController {
     }
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        blackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap)))
+        
+        self.hero.isEnabled = true
+        blackView.hero.id = "button"
+        
         
         captureButton.layer.cornerRadius = captureButton.frame.size.width / 2
         captureButton.clipsToBounds = true
@@ -74,32 +85,40 @@ class ViewController: UIViewController {
             captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
             captureMetadataOutput.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
             
-            //Initialise the video preview layer and add it as a sublayer to the viewPreview view's layer
-            videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession!)
-            videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
-            videoPreviewLayer?.frame = view.layer.bounds
-            previewView.layer.addSublayer(videoPreviewLayer!)
             
-            //start video capture
-            captureSession?.startRunning()
+            
+            DispatchQueue.global(qos: .userInitiated).async { //[weak self] in
+                //Initialise the video preview layer and add it as a sublayer to the viewPreview view's layer
+                self.videoPreviewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession!)
+                self.videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
+                self.videoPreviewLayer?.frame = self.view.layer.bounds
+                self.previewView.layer.addSublayer(self.videoPreviewLayer!)
+                self.captureSession?.startRunning()
+            }
             
             messageLabel.isHidden = true
-            
-            //Initialize QR Code Frame to highlight the QR code
-            qrCodeFrameView = UIView()
-            
-            if let qrCodeFrameView = qrCodeFrameView {
-                qrCodeFrameView.layer.borderColor = UIColor.green.cgColor
-                qrCodeFrameView.layer.borderWidth = 2
-                view.addSubview(qrCodeFrameView)
-                view.bringSubviewToFront(qrCodeFrameView)
-            }
         } catch {
             //If any error occurs, simply print it out
             print(error)
             return
         }
         
+    }
+    
+    @objc func onTap() {
+        // Make sure capturePhotoOutput is valid
+        guard let capturePhotoOutput = self.capturePhotoOutput else { return }
+        
+        // Get an instance of AVCapturePhotoSettings class
+        let photoSettings = AVCapturePhotoSettings()
+        
+        // Set photo settings for our need
+        photoSettings.isAutoStillImageStabilizationEnabled = true
+        photoSettings.isHighResolutionPhotoEnabled = true
+        photoSettings.flashMode = .auto
+        
+        // Call capturePhoto method by passing our photo settings and a delegate implementing AVCapturePhotoCaptureDelegate
+        capturePhotoOutput.capturePhoto(with: photoSettings, delegate: self)
     }
     
     override func viewDidLayoutSubviews() {
@@ -114,7 +133,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onTapTakePhoto(_ button: TransitionButton) {
+    @IBAction func onTapTakePhoto(_ sender: Any) {
         // Make sure capturePhotoOutput is valid
         guard let capturePhotoOutput = self.capturePhotoOutput else { return }
         
@@ -129,9 +148,6 @@ class ViewController: UIViewController {
         // Call capturePhoto method by passing our photo settings and a delegate implementing AVCapturePhotoCaptureDelegate
         capturePhotoOutput.capturePhoto(with: photoSettings, delegate: self)
         
-        
-        
-        
     }
 }
 
@@ -144,47 +160,27 @@ extension ViewController : AVCapturePhotoCaptureDelegate {
                      resolvedSettings: AVCaptureResolvedPhotoSettings,
                      bracketSettings: AVCaptureBracketedStillImageSettings?,
                      error: Error?) {
-        captureButton.startAnimation()
-        let qualityOfServiceClass = DispatchQoS.QoSClass.background
-        let backgroundQueue = DispatchQueue.global(qos: qualityOfServiceClass)
-        backgroundQueue.async(execute: {
-            
-            //            sleep(3) // 3: Do your networking task or background work here.
-            
-            DispatchQueue.main.async(execute: { () -> Void in
-                
-                // Make sure we get some photo sample buffer
-                guard error == nil,
-                    let photoSampleBuffer = photoSampleBuffer else {
-                        print("Error capturing photo: \(String(describing: error))")
-                        self.captureButton.stopAnimation(animationStyle: .shake, completion: {})
-                        return
-                }
-                
-                // Convert photo same buffer to a jpeg image data by using AVCapturePhotoOutput
-                guard let imageData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: photoSampleBuffer, previewPhotoSampleBuffer: previewPhotoSampleBuffer) else {
-                    return
-                }
-                
-                // Initialise an UIImage with our image data
-                let capturedImage = UIImage.init(data: imageData , scale: 1.0)
-                if let image = capturedImage {
-                    // Save our captured image to photos album
-                    UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-                    self.messageLabel.text = "CAPTURED"
-                    let binaryImageData = self.base64EncodeImage(image)
-                    self.createRequest(with: binaryImageData)
-                }
-                
-                
-                
-                // 4: Stop the animation, here you have three options for the `animationStyle` property:
-                // .expand: useful when the task has been compeletd successfully and you want to expand the button and transit to another view controller in the completion callback
-                // .shake: when you want to reflect to the user that the task did not complete successfly
-                // .normal
-                
-            })
-        })
+        // Make sure we get some photo sample buffer
+        guard error == nil,
+            let photoSampleBuffer = photoSampleBuffer else {
+                print("Error capturing photo: \(String(describing: error))")
+                return
+        }
+        
+        // Convert photo same buffer to a jpeg image data by using AVCapturePhotoOutput
+        guard let imageData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: photoSampleBuffer, previewPhotoSampleBuffer: previewPhotoSampleBuffer) else {
+            return
+        }
+        
+        // Initialise an UIImage with our image data
+        let capturedImage = UIImage.init(data: imageData , scale: 1.0)
+        if let image = capturedImage {
+            // Save our captured image to photos album
+            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+            self.messageLabel.text = "CAPTURED"
+            let binaryImageData = self.base64EncodeImage(image)
+            self.createRequest(with: binaryImageData)
+        }
         
     }
 }
@@ -269,20 +265,17 @@ extension ViewController {
                             self.photosByTag.append((data.url, data.caption))
                         }
                         
-                        //self.performSegue(withIdentifier: "toSuggestionView", sender: nil)
-                        self.captureButton.stopAnimation(animationStyle: .expand, completion: {
-//                            let suggestionViewController = SuggestionViewController()
-//                            suggestionViewController.photosByTag = [self.photosByTag]
-//                            suggestionViewController.tags = [self.relevantTag ?? ""]
+                        let suggestionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SuggestionViewController") as! SuggestionViewController
+                        suggestionViewController.photosByTag = [self.photosByTag]
+                        suggestionViewController.tags = [self.relevantTag ?? ""]
+                        self.present(suggestionViewController, animated: true, completion: nil)
                             
-                            self.performSegue(withIdentifier: "toSuggestedView", sender: nil)
+//                            self.performSegue(withIdentifier: "toSuggestedView", sender: nil)
                         })
-                    })
                     
                     
                 } else {
                     self.messageLabel.text = "No labels found"
-                    self.captureButton.stopAnimation(animationStyle: .shake, completion: {})
                 }
             }
         })

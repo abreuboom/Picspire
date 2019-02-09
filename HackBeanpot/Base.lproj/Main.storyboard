@@ -26,7 +26,15 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pNI-2p-bc4" customClass="TransitionButton" customModule="TransitionButton">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZO8-H1-bo0">
+                                <rect key="frame" x="123.5" y="392" width="128" height="128"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="128" id="E8a-qk-ug3"/>
+                                    <constraint firstAttribute="height" constant="128" id="t62-Dk-fqg"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pNI-2p-bc4">
                                 <rect key="frame" x="150" y="528" width="75" height="75"/>
                                 <color key="backgroundColor" red="0.21176470589999999" green="0.66666666669999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -55,6 +63,8 @@
                             <constraint firstItem="i2A-FM-Cs7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Ibj-83-oiV"/>
                             <constraint firstItem="A83-r0-D3U" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="OiY-hl-3RN"/>
                             <constraint firstItem="i2A-FM-Cs7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="UQu-gX-JmC"/>
+                            <constraint firstItem="pNI-2p-bc4" firstAttribute="top" secondItem="ZO8-H1-bo0" secondAttribute="bottom" constant="8" id="Zd2-LZ-Q9G"/>
+                            <constraint firstItem="ZO8-H1-bo0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Zlk-Fg-3o9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="i2A-FM-Cs7" secondAttribute="trailing" constant="16" id="bv8-aj-yPE"/>
                             <constraint firstItem="A83-r0-D3U" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="bx9-df-4rx"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="pNI-2p-bc4" secondAttribute="bottom" constant="64" id="dkb-3M-Cyp"/>
@@ -62,12 +72,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
+                        <outlet property="blackView" destination="ZO8-H1-bo0" id="HQY-d5-Y9R"/>
                         <outlet property="captureButton" destination="pNI-2p-bc4" id="vYW-sM-mJJ"/>
                         <outlet property="imageView" destination="A83-r0-D3U" id="JYa-V2-fQw"/>
                         <outlet property="messageLabel" destination="i2A-FM-Cs7" id="zC5-iH-k1O"/>
                         <outlet property="previewView" destination="A83-r0-D3U" id="Arz-LK-2dl"/>
-                        <segue destination="fmx-DQ-UZE" kind="presentation" identifier="toSuggestedView" id="bOb-J8-jSM"/>
+                        <segue destination="fmx-DQ-UZE" kind="presentation" identifier="toSuggestedView" modalPresentationStyle="overCurrentContext" id="bOb-J8-jSM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -77,14 +91,14 @@
         <!--Suggestion View Controller-->
         <scene sceneID="fai-2H-IxD">
             <objects>
-                <viewController id="fmx-DQ-UZE" customClass="SuggestionViewController" customModule="HackBeanpot" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SuggestionViewController" id="fmx-DQ-UZE" customClass="SuggestionViewController" customModule="HackBeanpot" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2mZ-UK-DXE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YpB-q6-54b">
-                                <rect key="frame" x="0.0" y="86" width="375" height="581"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="0.0" y="116" width="375" height="551"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainTableViewCell" rowHeight="254" id="LDX-zj-shU" customClass="MainTableViewCell" customModule="HackBeanpot" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="254"/>
@@ -95,7 +109,7 @@
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7aI-Vi-7oy">
                                                     <rect key="frame" x="15" y="51" width="345" height="187"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5HB-Tp-uaF">
                                                         <size key="itemSize" width="145" height="144"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -166,17 +180,31 @@
                                     <outlet property="delegate" destination="fmx-DQ-UZE" id="rEL-Cj-h3o"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zQT-zn-8wt">
+                                <rect key="frame" x="155.5" y="36" width="64" height="64"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="IgT-64-7xh"/>
+                                    <constraint firstAttribute="height" constant="64" id="J4m-b4-b4i"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="zQT-zn-8wt" firstAttribute="centerX" secondItem="2mZ-UK-DXE" secondAttribute="centerX" id="7G9-gV-h08"/>
+                            <constraint firstItem="zQT-zn-8wt" firstAttribute="top" secondItem="pCc-ae-WoH" secondAttribute="top" constant="16" id="MsA-sJ-fOJ"/>
                             <constraint firstItem="YpB-q6-54b" firstAttribute="bottom" secondItem="pCc-ae-WoH" secondAttribute="bottom" id="Pue-X9-iXa"/>
+                            <constraint firstItem="YpB-q6-54b" firstAttribute="top" secondItem="zQT-zn-8wt" secondAttribute="bottom" constant="16" id="Uch-n9-ZLT"/>
                             <constraint firstItem="YpB-q6-54b" firstAttribute="trailing" secondItem="pCc-ae-WoH" secondAttribute="trailing" id="gtV-ug-H9u"/>
-                            <constraint firstItem="YpB-q6-54b" firstAttribute="top" secondItem="pCc-ae-WoH" secondAttribute="top" constant="66" id="u6h-3H-iIl"/>
                             <constraint firstItem="YpB-q6-54b" firstAttribute="leading" secondItem="pCc-ae-WoH" secondAttribute="leading" id="xni-fZ-j1K"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pCc-ae-WoH"/>
                     </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
+                        <outlet property="blackView" destination="zQT-zn-8wt" id="inm-w4-pN0"/>
                         <outlet property="tableView" destination="YpB-q6-54b" id="5j8-If-43F"/>
                     </connections>
                 </viewController>
