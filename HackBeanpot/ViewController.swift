@@ -291,6 +291,8 @@ extension ViewController {
                     self.instagram.fetchTagData(completion: { (tagData) in
                         for data in tagData {
                             self.photosByTag.append((data.url, data.caption))
+                            print("Tag URL: \(data.url), \(data.caption)")
+                            print("Tag Count \(self.photosByTag.count)")
                         }
 
                         //self.performSegue(withIdentifier: "toSuggestionView", sender: nil)
