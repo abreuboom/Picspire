@@ -13,6 +13,7 @@ import SwiftyJSON
 class ViewController: UIViewController {
     let imagePicker = UIImagePickerController()
     let session = URLSession.shared
+    let instagram = Instagram()
     
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var captureButton: UIButton!
@@ -38,6 +39,7 @@ class ViewController: UIViewController {
         
         captureButton.layer.cornerRadius = captureButton.frame.size.width / 2
         captureButton.clipsToBounds = true
+        
         
         // Get an instance of the AVCaptureDevice class to initialize a device object and provide the video as the media type parameter
         guard let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {
@@ -230,9 +232,11 @@ extension ViewController {
                 let labelAnnotations: JSON = results["bestGuessLabels"][0]
                 print("my bitch be like \(labelAnnotations["label"])")
                 let numLabels: Int = labelAnnotations.count
-                var labels: Array<String> = []
+                //var labels: Array<String> = []
                 if numLabels > 0 {
                     self.messageLabel.text = "\(labelAnnotations["label"])"
+                    self.instagram.setQuery(query: "\(labelAnnotations["label"])")
+                    self.instagram.fetchData()
                 } else {
                     self.messageLabel.text = "No labels found"
                 }
