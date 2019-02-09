@@ -224,13 +224,13 @@ extension ViewController {
                 self.messageLabel.text = "Error code \(errorObj["code"]): \(errorObj["message"])"
             } else {
                 // Parse the response
-                print(json)
+            
                 let responses: JSON = json["responses"][0]
                 let results: JSON = responses["webDetection"]
                 
                 // Get label annotations
                 let labelAnnotations: JSON = results["bestGuessLabels"][0]
-                print("my bitch be like \(labelAnnotations["label"])")
+                
                 let numLabels: Int = labelAnnotations.count
                 //var labels: Array<String> = []
                 if numLabels > 0 {
