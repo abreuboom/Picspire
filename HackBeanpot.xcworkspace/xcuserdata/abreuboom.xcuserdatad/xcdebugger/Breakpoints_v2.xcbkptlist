@@ -6,16 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HackBeanpot/Instagram.swift"
-            timestampString = "571426169.247617"
+            filePath = "HackBeanpot/ViewController.swift"
+            timestampString = "571431335.4067709"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "fetchData(completion:)"
+            startingLineNumber = "278"
+            endingLineNumber = "278"
+            landmarkName = "analyzeResults(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

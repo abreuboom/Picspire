@@ -123,6 +123,11 @@
 			<key>orderHint</key>
 			<integer>21</integer>
 		</dict>
+		<key>TransitionButton.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>23</integer>
+		</dict>
 		<key>gRPC-C++-gRPCCertificates.xcscheme</key>
 		<dict>
 			<key>isShown</key>
