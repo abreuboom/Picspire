@@ -14,18 +14,18 @@ import CoreLocation
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
-
+    var instagram = Instagram()
     var longitude: Float = 21.25
     var latitude: Float = 21.5
+    var photosByTag = [Instagram.photo]()
 
     let imagePicker = UIImagePickerController()
     let session = URLSession.shared
-    let instagram = Instagram()
 
     @IBOutlet weak var blackView: UIView!
 
 
-
+    
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var messageLabel: UILabel!
 
@@ -50,8 +50,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        // Testing new get request for tagPhotos. They are similar to before but easeir to deal with. Process for location is similar,
+        // but they take in latitude and longtiude. API request for that would be http://www.mywebsite.com/tag/lat/long */
+        
+        instagram.fetchTagData(tag: "Tony") {
+            print("Success")
+        }
         blackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap)))
+        
 
         self.hero.isEnabled = true
         blackView.hero.id = "button"
@@ -290,46 +296,14 @@ extension ViewController {
                 let numLabels: Int = labelAnnotations.count
                 //var labels: Array<String> = []
                 if numLabels > 0 {
-                    var photosByTag: [(String, String)] = []
-                    var photosByLocation: [(String, String)] = []
                     self.messageLabel.text = "\(labelAnnotations["label"])"
                     self.relevantTag = "\(labelAnnotations["label"])"
-//                    self.instagram.setLocationQuery(longitude: self.longitude, latitude: self.latitude, completion: {(success) in
-//                        if success {
-//
-//                        }
-//                    })
                     
-                    self.instagram.setTagQuery(query: "\(labelAnnotations["label"])", completion: {(success) in
-                        if success {
-                            
-                            
-                                self.instagram.fetchTagData(completion: { (tagData) in
-                                    for data in tagData {
-                                        photosByTag.append((data.url, data.caption))
-                                        
-                                    }
-                                    print(tagData)
-                                    let suggestionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SuggestionViewController") as! SuggestionViewController
-                                    suggestionViewController.photosByTag = [photosByTag]
-                                    suggestionViewController.tags = [self.relevantTag ?? ""]
-                                    
-                                    self.present(suggestionViewController, animated: true, completion: nil)
-                                    
-                                    //                            self.performSegue(withIdentifier: "toSuggestedView", sender: nil)
-                                })
-                            
-                        }
-                    })
-                    
-
-                    self.sendData(photosByTag: photosByTag, photosByLocation: photosByLocation)
                 } else {
                     self.messageLabel.text = "No labels found"
                 }
             }
         })
-
     }
 
     func resizeImage(_ imageSize: CGSize, image: UIImage) -> Data {
@@ -394,18 +368,18 @@ extension ViewController {
         DispatchQueue.global().async { self.runRequestOnBackgroundThread(request) }
     }
     
-    func sendData(photosByTag: Array<Any>, photosByLocation: Array<Any>) {
-        func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if segue.identifier == "toSuggestedView" {
-                let suggestionViewController = segue.destination as! SuggestionViewController
-                suggestionViewController.photosByTag = [photosByTag] as! [[(String, String)]]
-                suggestionViewController.photosByLocation = [photosByLocation] as! [[(String, String)]]
-                
-                
-                suggestionViewController.tags = [self.relevantTag ?? ""]
-            }
-        }
-    }
+    
+//        func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//            if segue.identifier == "toSuggestedView" {
+//                let suggestionViewController = segue.destination as! SuggestionViewController
+//                suggestionViewController.photosByTag = [photosByTag] as! [[(String, String)]]
+//                suggestionViewController.photosByLocation = [photosByLocation] as! [[(String, String)]]
+//
+//
+//                suggestionViewController.tags = [self.relevantTag ?? ""]
+//            }
+//        }
+    
 
     func runRequestOnBackgroundThread(_ request: URLRequest) {
         // run the request

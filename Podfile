@@ -15,6 +15,7 @@ target 'HackBeanpot' do
   pod 'TransitionButton'
   pod 'Hero'
   pod 'Pastel'
+  pod 'Alamofire', '~> 4.7'
 
 
   target 'HackBeanpotTests' do
