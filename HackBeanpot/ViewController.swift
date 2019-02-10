@@ -326,9 +326,7 @@ extension ViewController {
                         
                         let suggestionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SuggestionViewController") as! SuggestionViewController
                         suggestionViewController.photosByTag = [self.photosByTag]
-                        suggestionViewController.tags = [self.relevantTag ?? ""]
-                        print("yeerrrr \(self.photosByTag.count)")
-                        
+                        suggestionViewController.tags = [self.relevantTag ?? ""]                        
                         
                         self.present(suggestionViewController, animated: true, completion: nil)
                     })

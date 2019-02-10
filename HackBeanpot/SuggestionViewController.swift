@@ -67,9 +67,7 @@ class SuggestionViewController: CustomTransitionViewController, UITableViewDataS
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tableViewCell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewCell") as! MainTableViewCell
-        
-        print("bitch why u a pussy ass hoe: \(tags[indexPath.row])")
-        
+                
         tableViewCell.configure(relevantTag: tags[indexPath.row], photos: photosByTag[indexPath.row])
         
         return tableViewCell

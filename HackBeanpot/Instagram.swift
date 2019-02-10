@@ -26,8 +26,10 @@ class Instagram {
     }
     
     func fetchTagData(tag: String, completion:@escaping (Array<photo>) -> ()) {
+        let formattedTag = tag.replacingOccurrences(of: " ", with: "")
+        print(formattedTag)
         var tagPhotos: [photo] = []
-        Alamofire.request("https://thawing-oasis-10513.herokuapp.com/tag/red").responseJSON {
+        Alamofire.request("https://thawing-oasis-10513.herokuapp.com/tag/eiffeltower").responseJSON {
             response in switch response.result {
             case .success(let val):
                 print("got it")
