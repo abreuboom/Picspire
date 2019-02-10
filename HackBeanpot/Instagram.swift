@@ -54,5 +54,9 @@ class Instagram {
     
 /* Make function for fethcing location data. Here is the endpoint you need to hit: https://thawing-oasis-10513.herokuapp.com/location/53.3411/-7.0012 - just enter ur lat and long for 53 and -7 respectively. No API Key required */
     
+    // I set up asking for location so from the view controller so pass latitude and longitude as the arguments for hte fetchByLocation function
+    // Then use the long and latitude for my endpoint
+    
     // Once you make two functions to get the two arrays of photos (one by tags and one by location) please proceed how you did yesterday and pass it to the collection view.
+    // Note the location one is a bit rusty compared to the hashtag one! */
  }
