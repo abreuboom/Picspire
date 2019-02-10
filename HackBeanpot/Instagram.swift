@@ -15,8 +15,8 @@ import SwiftyJSON
 class Instagram {
     let db = Firestore.firestore();
     
-    var tagPhotos: [photo] = []
-    var locationPhotos: [photo] = []
+    
+    
     
     struct photo {
         var url: String;
@@ -46,6 +46,7 @@ class Instagram {
     }
     
     func fetchTagData(completion:@escaping ([photo]) -> ()) {
+        var tagPhotos: [photo] = []
         db.collection("Results").document("tag").addSnapshotListener { documentSnapshot, error in
             guard let document = documentSnapshot else {
                 print("Error fetching document: \(error!)")
@@ -64,7 +65,7 @@ class Instagram {
                 let caption = captionArray?[counter]
                 counter = counter + 1
                 let temp = photo(url: url ?? "", caption: caption ?? "")
-                self.tagPhotos.append(temp)
+                tagPhotos.append(temp)
                 //print(temp)
             }
             //print("Current data: \(data)")
@@ -72,12 +73,13 @@ class Instagram {
              I think you must convert the data you get from Firestore to JSON before you can use it!
              */
             //print(self.tagPhotos)
-            completion(self.tagPhotos)
+            completion(tagPhotos)
         }
         
     }
     
     func fetchLocationData(completion:@escaping ([photo]) -> ()) {
+        var locationPhotos: [photo] = []
         db.collection("Results").document("location").addSnapshotListener { documentSnapshot, error in
             guard let document = documentSnapshot else {
                 print("Error fetching document: \(error!)")
@@ -97,7 +99,7 @@ class Instagram {
                 let caption = captionArray?[counter]
                 counter = counter + 1
                 let temp = photo(url: url ?? "", caption: caption ?? "")
-                self.locationPhotos.append(temp)
+                locationPhotos.append(temp)
                 //print(temp)
             }
             //print("Current data: \(data)")
@@ -105,7 +107,7 @@ class Instagram {
              I think you must convert the data you get from Firestore to JSON before you can use it!
              */
             //print(self.locationPhotos)
-            completion(self.locationPhotos)
+            completion(locationPhotos)
         }
         
     }

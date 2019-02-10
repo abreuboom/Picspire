@@ -36,8 +36,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var capturePhotoOutput: AVCapturePhotoOutput?
     var qrCodeFrameView: UIView?
 
-    var photosByTag: [(String, String)] = []
-    var photosByLocation: [(String, String)] = []
+    
+    
     var relevantTag: String?
 
 
@@ -290,35 +290,40 @@ extension ViewController {
                 let numLabels: Int = labelAnnotations.count
                 //var labels: Array<String> = []
                 if numLabels > 0 {
+                    var photosByTag: [(String, String)] = []
+                    var photosByLocation: [(String, String)] = []
                     self.messageLabel.text = "\(labelAnnotations["label"])"
                     self.relevantTag = "\(labelAnnotations["label"])"
-                    self.instagram.setLocationQuery(longitude: self.longitude, latitude: self.latitude, completion: {(success) in
-                        if success {
-                            print("something")
-                        }
-                    })
+//                    self.instagram.setLocationQuery(longitude: self.longitude, latitude: self.latitude, completion: {(success) in
+//                        if success {
+//
+//                        }
+//                    })
+                    
                     self.instagram.setTagQuery(query: "\(labelAnnotations["label"])", completion: {(success) in
                         if success {
-                            self.instagram.fetchTagData(completion: { (tagData) in
-                                for data in tagData {
-                                    self.photosByTag.append((data.url, data.caption))
-                                    print("Tag URL: \(data.url), \(data.caption)")
-                                    print("Tag Count \(self.photosByTag.count)")
-                                }
-                                
-                                let suggestionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SuggestionViewController") as! SuggestionViewController
-                                suggestionViewController.photosByTag = [self.photosByTag]
-                                suggestionViewController.tags = [self.relevantTag ?? ""]
-                                print("yeerrrr \(self.photosByTag.count)")
-                                self.present(suggestionViewController, animated: true, completion: nil)
-                                
-                                //                            self.performSegue(withIdentifier: "toSuggestedView", sender: nil)
-                            })
+                            
+                            
+                                self.instagram.fetchTagData(completion: { (tagData) in
+                                    for data in tagData {
+                                        photosByTag.append((data.url, data.caption))
+                                        
+                                    }
+                                    print(tagData)
+                                    let suggestionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SuggestionViewController") as! SuggestionViewController
+                                    suggestionViewController.photosByTag = [photosByTag]
+                                    suggestionViewController.tags = [self.relevantTag ?? ""]
+                                    
+                                    self.present(suggestionViewController, animated: true, completion: nil)
+                                    
+                                    //                            self.performSegue(withIdentifier: "toSuggestedView", sender: nil)
+                                })
+                            
                         }
                     })
                     
 
-
+                    self.sendData(photosByTag: photosByTag, photosByLocation: photosByLocation)
                 } else {
                     self.messageLabel.text = "No labels found"
                 }
@@ -388,13 +393,26 @@ extension ViewController {
         // Run the request on a background thread
         DispatchQueue.global().async { self.runRequestOnBackgroundThread(request) }
     }
+    
+    func sendData(photosByTag: Array<Any>, photosByLocation: Array<Any>) {
+        func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if segue.identifier == "toSuggestedView" {
+                let suggestionViewController = segue.destination as! SuggestionViewController
+                suggestionViewController.photosByTag = [photosByTag] as! [[(String, String)]]
+                suggestionViewController.photosByLocation = [photosByLocation] as! [[(String, String)]]
+                
+                
+                suggestionViewController.tags = [self.relevantTag ?? ""]
+            }
+        }
+    }
 
     func runRequestOnBackgroundThread(_ request: URLRequest) {
         // run the request
 
         let task: URLSessionDataTask = session.dataTask(with: request) { (data, response, error) in
             guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "")
+                
                 return
             }
 
@@ -404,14 +422,5 @@ extension ViewController {
         task.resume()
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toSuggestedView" {
-            let suggestionViewController = segue.destination as! SuggestionViewController
-            suggestionViewController.photosByTag = [self.photosByTag]
-            suggestionViewController.photosByLocation = [self.photosByLocation]
-
-//            print("my son wya: \(self.photosByTag[0].0)")
-            suggestionViewController.tags = [self.relevantTag ?? ""]
-        }
-    }
+    
 }
