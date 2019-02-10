@@ -14,20 +14,19 @@ import CoreLocation
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
-
+    var instagram = Instagram()
     var longitude: Float = 21.25
     var latitude: Float = 21.5
+    var photosByTag = [Instagram.photo]()
 
     let imagePicker = UIImagePickerController()
     let session = URLSession.shared
-    let instagram = Instagram()
 
     @IBOutlet weak var blackView: UIView!
 
 
-
+    
     @IBOutlet weak var previewView: UIView!
-    @IBOutlet weak var captureButton: UIButton!
     @IBOutlet weak var messageLabel: UILabel!
 
     @IBOutlet weak var imageView: UIView!
@@ -37,8 +36,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var capturePhotoOutput: AVCapturePhotoOutput?
     var qrCodeFrameView: UIView?
 
-    var photosByTag: [(String, String)] = []
-    var photosByLocation: [(String, String)] = []
+    
+    
     var relevantTag: String?
 
 
@@ -51,15 +50,32 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        // Testing new get request for tagPhotos. They are similar to before but easeir to deal with. Process for location is similar,
+        // but they take in latitude and longtiude. API request for that would be http://www.mywebsite.com/tag/lat/long */
+        
+        instagram.fetchTagData(tag: "Tony") {
+            print("Success")
+        }
         blackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap)))
+        
 
         self.hero.isEnabled = true
         blackView.hero.id = "button"
-
-
-        captureButton.layer.cornerRadius = captureButton.frame.size.width / 2
-        captureButton.clipsToBounds = true
+        
+        blackView.layer.cornerRadius = blackView.frame.size.width/2
+        blackView.layer.masksToBounds = true;
+        blackView.clipsToBounds = true
+        blackView.layer.borderWidth = 1.0
+        blackView.layer.borderColor = UIColor.clear.cgColor
+        
+        blackView.layer.shadowColor = UIColor.lightGray.cgColor
+        blackView.layer.shadowOffset = CGSize(width:0,height: 1.0)
+        blackView.layer.shadowRadius = 4.0
+        blackView.layer.shadowOpacity = 0.5
+        blackView.layer.masksToBounds = true;
+        blackView.layer.shadowPath = UIBezierPath(roundedRect:blackView.bounds, cornerRadius:blackView.layer.cornerRadius).cgPath
+        
+        
 
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization();
@@ -282,30 +298,12 @@ extension ViewController {
                 if numLabels > 0 {
                     self.messageLabel.text = "\(labelAnnotations["label"])"
                     self.relevantTag = "\(labelAnnotations["label"])"
-                    self.instagram.setLocationQuery(longitude: self.longitude, latitude: self.latitude)
-                    self.instagram.setTagQuery(query: "\(labelAnnotations["label"])")
-                    self.instagram.fetchTagData(completion: { (tagData) in
-                        for data in tagData {
-                            self.photosByTag.append((data.url, data.caption))
-                            print("Tag URL: \(data.url), \(data.caption)")
-                            print("Tag Count \(self.photosByTag.count)")
-                        }
-
-                        let suggestionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SuggestionViewController") as! SuggestionViewController
-                        suggestionViewController.photosByTag = [self.photosByTag]
-                        suggestionViewController.tags = [self.relevantTag ?? ""]
-                        self.present(suggestionViewController, animated: true, completion: nil)
-
-//                            self.performSegue(withIdentifier: "toSuggestedView", sender: nil)
-                        })
-
-
+                    
                 } else {
                     self.messageLabel.text = "No labels found"
                 }
             }
         })
-
     }
 
     func resizeImage(_ imageSize: CGSize, image: UIImage) -> Data {
@@ -369,13 +367,26 @@ extension ViewController {
         // Run the request on a background thread
         DispatchQueue.global().async { self.runRequestOnBackgroundThread(request) }
     }
+    
+    
+//        func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//            if segue.identifier == "toSuggestedView" {
+//                let suggestionViewController = segue.destination as! SuggestionViewController
+//                suggestionViewController.photosByTag = [photosByTag] as! [[(String, String)]]
+//                suggestionViewController.photosByLocation = [photosByLocation] as! [[(String, String)]]
+//
+//
+//                suggestionViewController.tags = [self.relevantTag ?? ""]
+//            }
+//        }
+    
 
     func runRequestOnBackgroundThread(_ request: URLRequest) {
         // run the request
 
         let task: URLSessionDataTask = session.dataTask(with: request) { (data, response, error) in
             guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "")
+                
                 return
             }
 
@@ -385,14 +396,5 @@ extension ViewController {
         task.resume()
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toSuggestedView" {
-            let suggestionViewController = segue.destination as! SuggestionViewController
-            suggestionViewController.photosByTag = [self.photosByTag]
-            suggestionViewController.photosByLocation = [self.photosByLocation]
-
-//            print("my son wya: \(self.photosByTag[0].0)")
-            suggestionViewController.tags = [self.relevantTag ?? ""]
-        }
-    }
+    
 }

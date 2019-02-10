@@ -24,6 +24,7 @@ class PhotoCell: UICollectionViewCell {
     }
     
     public func configure(with url: String, caption: String) {
+        print("hello")
         self.url = url
         self.caption = caption
         

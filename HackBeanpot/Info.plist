@@ -51,6 +51,11 @@
 	<string>Permission needed for saving picture to Camera roll</string>
 	<key>FirebaseScreenReportingEnabled</key>
 	<false/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Permission needed to save picture to camera roll</string>
 </dict>

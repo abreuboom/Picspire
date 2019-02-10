@@ -14,6 +14,9 @@ target 'HackBeanpot' do
   pod 'SwiftyJSON', '~> 3.1'
   pod 'TransitionButton'
   pod 'Hero'
+  pod 'Pastel'
+  pod 'Alamofire', '~> 4.7'
+
 
   target 'HackBeanpotTests' do
     inherit! :search_paths

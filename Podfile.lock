@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (4.8.1)
   - BoringSSL-GRPC (0.0.2):
     - BoringSSL-GRPC/Implementation (= 0.0.2)
     - BoringSSL-GRPC/Interface (= 0.0.2)
@@ -106,21 +107,25 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - Pastel (0.5.1)
   - Protobuf (3.6.1)
   - SwiftyJSON (3.1.4)
   - TransitionButton (0.5.2)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.7)
   - Firebase/Core
   - Firebase/Database
   - Firebase/Firestore
   - Firebase/Storage
   - Hero
+  - Pastel
   - SwiftyJSON (~> 3.1)
   - TransitionButton
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Alamofire
     - BoringSSL-GRPC
     - Firebase
     - FirebaseAnalytics
@@ -138,11 +143,13 @@ SPEC REPOS:
     - Hero
     - leveldb-library
     - nanopb
+    - Pastel
     - Protobuf
     - SwiftyJSON
     - TransitionButton
 
 SPEC CHECKSUMS:
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
   BoringSSL-GRPC: 2a230d9cd93e7ce39916044f645cebb31f37dde6
   Firebase: 749a8ff4962f9d8c79dda1966de20f6f77583d67
   FirebaseAnalytics: d35d47c03c50c73c14a7fd31463c5775843e78a9
@@ -160,10 +167,11 @@ SPEC CHECKSUMS:
   Hero: bac92350d7201a1a940003e0767c7b52ce7c99a1
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  Pastel: b3dd5b8d612dac06ae7c63c97c45c900829bc139
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   TransitionButton: fb271583d9c9e4bb116b97103047e5157653f233
 
-PODFILE CHECKSUM: eac99acd48d8e03ac3cfdd98034b2d554dfe52fd
+PODFILE CHECKSUM: a9149ebd0f90e4ab32ebd82f0c2714377303fe8a
 
 COCOAPODS: 1.6.0
