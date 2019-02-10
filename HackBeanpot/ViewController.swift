@@ -11,6 +11,7 @@ import AVFoundation
 import SwiftyJSON
 import Hero
 import CoreLocation
+import Pastel
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
@@ -68,6 +69,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         blackView.layer.shadowOpacity = 0.5
         blackView.layer.masksToBounds = true;
         blackView.layer.shadowPath = UIBezierPath(roundedRect:blackView.bounds, cornerRadius:blackView.layer.cornerRadius).cgPath
+        
+        blackView.layer.zPosition = 10
         
         
 
@@ -143,6 +146,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
         // Call capturePhoto method by passing our photo settings and a delegate implementing AVCapturePhotoCaptureDelegate
         capturePhotoOutput.capturePhoto(with: photoSettings, delegate: self)
+        //gradientLoadStart()
+    }
+    
+    func gradientLoadStart() {
+        let pastelView = PastelView(frame: view.bounds)
+        
+        // Custom Direction
+        pastelView.startPastelPoint = .bottomLeft
+        pastelView.endPastelPoint = .topRight
+        
+        // Custom Duration
+        pastelView.animationDuration = 3.0
+        pastelView.setColors([UIColor(red:0.96, green:0.31, blue:0.64, alpha:1.0),
+                              UIColor(red:0.96, green:0.31, blue:0.64, alpha:1.0)])
+        pastelView.startAnimation()
+        view.insertSubview(pastelView, at: 2)
+        
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
