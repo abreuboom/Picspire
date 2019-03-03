@@ -16,4 +16,7 @@ Swift 4
 [Firebase](https://firebase.google.com/) \
 [Alamofire](https://github.com/Alamofire/Alamofire) \
 [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) \
-[Hero](https://github.com/HeroTransitions/Hero) \
+[Hero](https://github.com/HeroTransitions/Hero)
+
+To actually pull the Instagram pictures, we built our a custom [Instagram API](https://github.com/Subraiz/Instagram). \
+Reference this repo for more details: https://github.com/Subraiz/Instagram
